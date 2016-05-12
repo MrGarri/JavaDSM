@@ -5,12 +5,11 @@ import java.util.*;
 
 public class FabricaCerrojosImpl extends UnicastRemoteObject implements FabricaCerrojos {
 
-    private Map<String, Cerrojo> cerrojos;
+    private Map<String, Cerrojo> cerrojos = new HashMap<>();
 
     public FabricaCerrojosImpl() throws RemoteException {
-        super();
-        cerrojos = new HashMap<>();
     }
+
     public synchronized	Cerrojo iniciar(String s) throws RemoteException {
         Cerrojo c = cerrojos.get(s);
         if (c == null) {
