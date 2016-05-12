@@ -3,7 +3,6 @@ import java.rmi.*;
 import java.rmi.server.*;
 import java.util.*;
 
-
 public class AlmacenImpl extends UnicastRemoteObject implements Almacen {
 
     private Map<String, ObjetoCompartido> contenedor;
