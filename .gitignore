@@ -53,4 +53,6 @@ fabric.properties
 # *.iml
 # modules.xml
 
+*.jar
+
 
