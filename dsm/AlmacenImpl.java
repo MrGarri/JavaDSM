@@ -29,9 +29,7 @@ public class AlmacenImpl extends UnicastRemoteObject implements Almacen {
      throws RemoteException  {
 
         for(ObjetoCompartido i : loc) {
-            if(! contenedor.containsKey(i.getCabecera().getNombre())) {
-                contenedor.put(i.getCabecera().getNombre(), i);
-            }
+            contenedor.put(i.getCabecera().getNombre(), i);
         }
 
     }
