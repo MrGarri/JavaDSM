@@ -30,7 +30,7 @@ public class DSMCerrojo {
         objetos.put(o.getCabecera().getNombre(), o);
     }
     public void desasociar(ObjetoCompartido o) {
-        objetos.remove(o.getCabecera());
+        objetos.remove(o.getCabecera().getNombre());
     }
     public boolean adquirir(boolean exc) throws RemoteException {
         cerrojo.adquirir(exc);
