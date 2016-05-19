@@ -4,7 +4,7 @@ import java.rmi.server.*;
 
 class CerrojoImpl extends UnicastRemoteObject implements Cerrojo {
 
-    private boolean adquirido;
+    private int adquirido;
     private boolean exclusivo;
 
     CerrojoImpl() throws RemoteException {
@@ -13,21 +13,22 @@ class CerrojoImpl extends UnicastRemoteObject implements Cerrojo {
 
     public synchronized void adquirir (boolean exc) throws RemoteException {
         try {
-            if(adquirido && (exc || exclusivo))
+            if(adquirido > 0 && (exc || exclusivo))
                 this.wait();
 
-            adquirido = true;
+            adquirido++;
             exclusivo = exc;
         } catch (InterruptedException e) {}
     }
 
     public synchronized boolean liberar() throws RemoteException {
-        if(!adquirido)
+        if(adquirido < 1)
             return false;
 
-        this.notifyAll();
+        if(adquirido == 1)
+            this.notifyAll();
 
-        adquirido = false;
+        adquirido--;
         return true;
     }
 }
