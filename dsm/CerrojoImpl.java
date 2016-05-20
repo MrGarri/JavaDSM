@@ -13,7 +13,7 @@ class CerrojoImpl extends UnicastRemoteObject implements Cerrojo {
 
     public synchronized void adquirir (boolean exc) throws RemoteException {
         try {
-            if(adquirido > 0 && (exc || exclusivo))
+            while(adquirido > 0 && (exc || exclusivo))
                 this.wait();
 
             adquirido++;
